@@ -78,33 +78,47 @@ bool checkBoard(int** board)
     return 1;
 }
 
-bool back(int** board, int x, int y)
+bool back(int** board, int x, int y, int &solutions)
 {
       if (x>=9)
       {
-	x=0; y++;
+		x=0; y++;
       }
-      if (y>=9) return 1;
-      
-     // cout << "X= "<< x << " Y= " << y << "\n";
+      if (y>=9) 
+	  {
+		solutions++;
+		  
+		cout << solutions << ":\n";
+		for (int y=0; y<9; y++)
+		{
+		  for (int x=0; x<9; x++)
+		  {
+			cout << board[y][x] <<" ";
+		  }
+		  cout << "\n";
+		}
+		cout << "\n";
+		return 0;
+	  }
+	
       
       if (board[y][x]!=0)
       {
-	return back(board, (x+1), y);
+		return back(board, (x+1), y, solutions);
       }
       for (int digit = 1; digit<10; digit++)
       {
-	//cout << "Trying "<< digit << "\n";
-	board[y][x]=digit;
-	if (checkBoard(board))
-	{
-	   if (back(board, (x+1), y))
-	   {
-	     return true;
-	  }
-	
-	  
-	}
+		board[y][x]=digit;
+		if (checkBoard(board))
+		{
+			if (back(board, (x+1), y, solutions))
+	   		{
+	    		return true;
+	   		}
+			
+		}
+		  
+		  
       }
       
       
@@ -131,23 +145,16 @@ int main()
   {
       for (int x=0; x<9; x++)
       {
-	int currNumber;
-	cin >> currNumber;
-	board[y][x] = currNumber;
+		int currNumber;
+		cin >> currNumber;
+		board[y][x] = currNumber;
       }
   }
-  
-  if (back(board,0,0))
+  int solutions =0; 
+  if (back(board,0,0, solutions))
   {
       cout << "Found Solutions: \n";
-    for (int y=0; y<9; y++)
-    {
-      for (int x=0; x<9; x++)
-      {
-	cout << board[y][x] << " ";
-      }
-      cout << "\n";
-    }
+    
   }
   else
   {
