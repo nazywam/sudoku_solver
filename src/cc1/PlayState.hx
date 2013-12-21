@@ -1,5 +1,6 @@
 package cc1;
 
+import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -9,6 +10,7 @@ import flixel.tile.FlxTileblock;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
+import flixel.util.FlxPoint;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
 import haxe.Resource;
@@ -28,7 +30,7 @@ class PlayState extends FlxState
 		add(tiles);
 
 		player = new Player();
-		player.acceleration.y = 50;
+		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
 		add(player);
 		
 		var bytes = Assets.getBytes("assets/maps.bin");
