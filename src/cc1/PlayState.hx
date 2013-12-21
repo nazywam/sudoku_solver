@@ -32,7 +32,7 @@ class PlayState extends FlxState
 		add(tiles);
 
 		var width = 40;
-		var height = 20;
+		var height = 29;
 		
 		player = new Player();
 		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
@@ -40,6 +40,8 @@ class PlayState extends FlxState
 		add(player);
 		
 		var bytes = Assets.getBytes("assets/maps.bin");
+		
+		bytes.position = 41*6;
 		
 		for(y in 0...height){
 			trace(bytes.readByte());
