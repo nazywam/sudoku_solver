@@ -35,6 +35,9 @@ class Player extends FlxSprite
 		animation.add("fireRight", [276], 0);
 		animation.add("fireLeft", [277], 0);
 		
+		width = 8;
+		offset.x = 4;
+		
 	}
 	
 	override public function update():Void 
