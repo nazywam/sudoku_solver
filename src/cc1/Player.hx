@@ -9,7 +9,6 @@ class Player extends FlxSprite
 {
 
 	var facingRight:Bool = true;
-	var jumping:Bool = false;
 	var walking:Bool = false;
 	var shooting:Bool = false;
 
@@ -52,11 +51,17 @@ class Player extends FlxSprite
 			walking = false;
 		}
 		
+		velocity.x = walking?facingRight?32: -32:0;
+		
 		shooting = FlxG.keyboard.pressed("ALT");
 		
-		if ( isTouching(FlxObject.FLOOR) ) {
-			jumping = FlxG.keyboard.pressed("UP", "W");
+		if ( (isTouching(FlxObject.FLOOR) || true) && FlxG.keyboard.pressed("UP", "W")) {
+			acceleration.y = -1000;
+		} else {
+			acceleration.y = 100;
 		}
+		
+		var jumping = isTouching(FlxObject.FLOOR);
 		
 		var direction = facingRight?"Right":"Left";
 		
