@@ -39,6 +39,8 @@ class Player extends FlxSprite
 	
 	override public function update():Void 
 	{
+		var jumping : Bool = !isTouching(FlxObject.DOWN);
+
 		super.update();
 
 		if (FlxG.keyboard.pressed("LEFT", "A")) {
@@ -51,17 +53,17 @@ class Player extends FlxSprite
 			walking = false;
 		}
 		
-		velocity.x = walking?facingRight?32: -32:0;
+		velocity.x = walking?facingRight?48: -48:0;
 		
 		shooting = FlxG.keyboard.pressed("ALT");
 		
-		if ( (isTouching(FlxObject.FLOOR) || true) && FlxG.keyboard.pressed("UP", "W")) {
-			acceleration.y = -1000;
+		if ( !jumping && FlxG.keyboard.pressed("UP", "W")) {
+			acceleration.y = -5000;
 		} else {
-			acceleration.y = 100;
+			acceleration.y = 400;
 		}
 		
-		var jumping = isTouching(FlxObject.FLOOR);
+		
 		
 		var direction = facingRight?"Right":"Left";
 		
