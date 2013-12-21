@@ -27,11 +27,19 @@ class PlayState extends FlxState
 		player.acceleration.y = 50;
 		add(player);
 		
-		var block = new FlxTileblock(0, 32, 16, 16);
-		block.loadGraphic("img/gfx.png", false, false, 16, 16);
-		block.animation.frameIndex = 3;
-
-		tiles.add(block);
+		for (i in 0...12) {
+			var block = new FlxTileblock(i*16, 64, 16, 16);
+			block.loadGraphic("img/gfx.png", false, false, 16, 16);
+			block.animation.frameIndex = 2;
+			tiles.add(block);
+		}
+		for (i in 0...5) {
+			var block = new FlxTileblock(160+i*16, 48, 16, 16);
+			block.loadGraphic("img/gfx.png", false, false, 16, 16);
+			block.animation.frameIndex = 2;
+			tiles.add(block);
+		}
+		
 		
 	}
 
