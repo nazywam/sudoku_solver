@@ -29,15 +29,19 @@ class PlayState extends FlxState
 		tiles = new FlxGroup();
 		add(tiles);
 
+		var width = 40;
+		var height = 20;
+		
 		player = new Player();
 		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
+		FlxG.camera.setBounds(0, 0, 16 * width, 16 * height);
 		add(player);
 		
 		var bytes = Assets.getBytes("assets/maps.bin");
 		
-		for(y in 0...20){
+		for(y in 0...height){
 			trace(bytes.readByte());
-			for (x in 0...40) {
+			for (x in 0...width) {
 				var tileID = bytes.readByte();
 				if(tileID != 0x20) {
 					var block = new FlxTileblock(x*16, y*16, 16, 16);
