@@ -34,7 +34,7 @@ class Player extends FlxSprite
 		animation.add("jumpLeft", [275], 0);
 		animation.add("fireRight", [276], 0);
 		animation.add("fireLeft", [277], 0);
-		
+		animation.add("die", range(800, 817), 10, false);
 	}
 	
 	override public function update():Void 
