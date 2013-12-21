@@ -48,7 +48,7 @@ class PlayState extends FlxState
 		for(y in 0...height){
 			trace(bytes.readByte());
 			for (x in 0...width) {
-				var tileID = tileIDs[bytes.readByte()];
+				var tileID = tileIDs[(0xff&bytes.readByte())%0xff];
 				if(tileID != 0) {
 					var block = new FlxTileblock(x*16, y*16, 16, 16);
 					block.loadGraphic("assets/gfx.png", false, false, 16, 16);
