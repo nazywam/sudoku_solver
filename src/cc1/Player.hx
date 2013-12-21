@@ -7,7 +7,7 @@ class Player extends FlxSprite
 {
 
 	private function range(a, b) {
-		var array = new Array<UInt>();
+		var array = new Array<Int>();
 		for ( i in a...b) {
 			array[i - a] = i;
 		}
