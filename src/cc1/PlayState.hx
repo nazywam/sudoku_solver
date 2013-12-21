@@ -9,6 +9,10 @@ import flixel.tile.FlxTileblock;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxMath;
+import haxe.io.Bytes;
+import haxe.io.BytesData;
+import haxe.Resource;
+import openfl.Assets;
 
 class PlayState extends FlxState
 {
@@ -27,19 +31,20 @@ class PlayState extends FlxState
 		player.acceleration.y = 50;
 		add(player);
 		
-		for (i in 0...12) {
-			var block = new FlxTileblock(i*16, 64, 16, 16);
-			block.loadGraphic("img/gfx.png", false, false, 16, 16);
-			block.animation.frameIndex = 2;
-			tiles.add(block);
-		}
-		for (i in 0...5) {
-			var block = new FlxTileblock(160+i*16, 48, 16, 16);
-			block.loadGraphic("img/gfx.png", false, false, 16, 16);
-			block.animation.frameIndex = 2;
-			tiles.add(block);
-		}
+		var bytes = Assets.getBytes("assets/maps.bin");
 		
+		for(y in 0...20){
+			trace(bytes.readByte());
+			for (x in 0...40) {
+				var tileID = bytes.readByte();
+				if(tileID != 0x20) {
+					var block = new FlxTileblock(x*16, y*16, 16, 16);
+					block.loadGraphic("assets/gfx.png", false, false, 16, 16);
+					block.animation.frameIndex = tileID;
+					tiles.add(block);
+				}
+			}
+		}
 		
 	}
 

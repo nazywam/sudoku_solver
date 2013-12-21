@@ -24,7 +24,7 @@ class Player extends FlxSprite
 	{
 		super();
 		
-		loadGraphic("img/gfx.png", true, false, 16, 16);
+		loadGraphic("assets/gfx.png", true, false, 16, 16);
 		
 		animation.add("lookRight", [250], 0);
 		animation.add("walkRight", range(250, 262), 15);
