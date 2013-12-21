@@ -34,6 +34,8 @@ class PlayState extends FlxState
 		var width = 40;
 		var height = 25;
 		
+		FlxG.worldBounds.set(0, 0, 16 * width, 16 * height);
+		
 		player = new Player();
 		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
 		FlxG.camera.setBounds(0, 0, 16 * width, 16 * height);
