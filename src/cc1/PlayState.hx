@@ -23,13 +23,16 @@ class PlayState extends FlxState
 	
 	var player:Player;
 	var tiles:FlxGroup;
-
+	var snakes:FlxGroup;
 	override public function create():Void
 	{
 		super.create();
 
 		tiles = new FlxGroup();
 		add(tiles);
+
+		snakes = new FlxGroup();
+		add(snakes);
 
 		var width = 40;
 		var height = 25;
@@ -61,6 +64,7 @@ class PlayState extends FlxState
 				}
 			}
 		}
+		snakes.add(new Snake(208, 128));
 		
 	}
 
@@ -72,7 +76,7 @@ class PlayState extends FlxState
 	override public function update():Void
 	{
 		FlxG.collide(player,tiles);
-
+		FlxG.collide(snakes,tiles);
 		super.update();
 	}	
 }
