@@ -24,6 +24,7 @@ class PlayState extends FlxState
 	var player:Player;
 	var tiles:FlxGroup;
 	var snakes:FlxGroup;
+
 	override public function create():Void
 	{
 		super.create();
@@ -43,7 +44,8 @@ class PlayState extends FlxState
 		var bytes = Assets.getBytes("assets/maps.bin");
 		
 		bytes.position = 41*10;
-		
+		bytes.position += 41 * ( 25 + 24*9);
+
 		for(y in 0...height){
 			trace(bytes.readByte());
 			for (x in 0...width) {
@@ -53,6 +55,8 @@ class PlayState extends FlxState
 					player.setPosition(x * 16, y * 16);
 					FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
 					add(player);
+				} else if (id == 0x53) {
+					snakes.add(new Snake(x * 16, y * 16));
 				} else {
 					var tileID = tileIDs[id];
 					if(tileID != 0) {
@@ -64,7 +68,6 @@ class PlayState extends FlxState
 				}
 			}
 		}
-		snakes.add(new Snake(208, 128));
 		
 	}
 
