@@ -35,12 +35,8 @@ class PlayState extends FlxState
 		var height = 25;
 		
 		FlxG.worldBounds.set(0, 0, 16 * width, 16 * height);
-		
-		player = new Player();
-		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
 		FlxG.camera.setBounds(0, 0, 16 * width, 16 * height);
-		add(player);
-		
+
 		var bytes = Assets.getBytes("assets/maps.bin");
 		
 		bytes.position = 41*10;
@@ -48,12 +44,20 @@ class PlayState extends FlxState
 		for(y in 0...height){
 			trace(bytes.readByte());
 			for (x in 0...width) {
-				var tileID = tileIDs[(0xff&bytes.readByte())%0xff];
-				if(tileID != 0) {
-					var block = new FlxTileblock(x*16, y*16, 16, 16);
-					block.loadGraphic("assets/gfx.png", false, false, 16, 16);
-					block.animation.frameIndex = tileID;
-					tiles.add(block);
+				var id = (0xff & bytes.readByte()) % 0xff;
+				if (id == 0x59) {
+					player = new Player();
+					player.setPosition(x * 16, y * 16);
+					FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
+					add(player);
+				} else {
+					var tileID = tileIDs[id];
+					if(tileID != 0) {
+						var block = new FlxTileblock(x*16, y*16, 16, 16);
+						block.loadGraphic("assets/gfx.png", false, false, 16, 16);
+						block.animation.frameIndex = tileID;
+						tiles.add(block);
+					}
 				}
 			}
 		}
