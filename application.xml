@@ -3,19 +3,18 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="cc1" package="cc1.cc1" version="1.0.0" company="" />
+	<meta title="SudokuSolver" version="1.0.0" company="" />
 	
 	<!-- output -->
-	<app main="cc1.Main" file="cc1" path="bin" />
+	<app main="Main" file="SudokuSolver" path="bin" />
 	
 	<window background="#000000" fps="60" />
-	<window width="640" height="400" unless="mobile" />
-	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
+	<window width="720" height="800" unless="mobile" />
+	<window orientation="portrait" vsync="false" antialiasing="0" if="cpp" />
 	
 	<!-- classpath, haxe libs -->
 	<source path="src" />
 	<haxelib name="openfl" />
-	<haxelib name="flixel" />
 	
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />
