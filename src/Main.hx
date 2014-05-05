@@ -1,7 +1,6 @@
 class Main {
+	//statyczna funkcja main do inicjalizacji Menu
     static function main() {
-
-	var game = new Game();
-	//game.draw();
-    }
+    var menu = new Menu();
+	}
 }
